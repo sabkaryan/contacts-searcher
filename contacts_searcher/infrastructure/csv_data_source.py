@@ -1,4 +1,5 @@
 import csv
+from typing import List
 
 
 class CSVDataSource:
@@ -16,6 +17,16 @@ class CSVCollection:
 
     def insert_one(self, document):
         pass
+
+    def insert_many(self, documents: List[dict]):
+        if not documents:
+            return None
+
+        with open(self.__path, 'w') as file:
+            writer = csv.DictWriter(file, fieldnames=documents[0].keys())
+            writer.writeheader()
+            for row in documents:
+                writer.writerow(row)
 
     def find_one(self):
         return next(self.find(), None)

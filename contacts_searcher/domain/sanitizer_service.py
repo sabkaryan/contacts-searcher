@@ -33,7 +33,7 @@ class SanitizerService:
                 contacts.inn,
                 phones=contacts.phones - phone_duplicates,
                 emails=contacts.emails - email_duplicates,
-                company_names=company_name_duplicates,
+                company_names=contacts.company_names - company_name_duplicates,
             )
             for contacts in naive_results
         ]
