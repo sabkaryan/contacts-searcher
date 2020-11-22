@@ -1,4 +1,5 @@
 from contacts_searcher.domain.inn import validate
+from contacts_searcher.infrastructure.unique_str_set import UniqueStrSet
 
 
 class Contact:
@@ -6,7 +7,7 @@ class Contact:
         self.inn = inn
         self.phones = phones or set()
         self.emails = emails or set()
-        self.company_names = company_names or set()
+        self.company_names = company_names or UniqueStrSet(similarity_threshold=0.5)
 
     @property
     def inn(self) -> str:
